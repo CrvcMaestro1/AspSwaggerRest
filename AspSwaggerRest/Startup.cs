@@ -30,7 +30,7 @@ namespace AspSwaggerRest
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AspSwaggerRest", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Asp Swagger Rest", Version = "v1" });
             });
         }
 
