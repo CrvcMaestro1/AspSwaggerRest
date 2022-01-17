@@ -16,6 +16,7 @@ namespace AspSwaggerRest
 {
     public class Startup
     {
+        readonly string corsConfiguration = "corsConfiguration";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,6 +32,13 @@ namespace AspSwaggerRest
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Asp Swagger Rest", Version = "v1" });
+            });
+            services.AddCors(options =>
+            {
+                options.AddPolicy(corsConfiguration, builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200");
+                });
             });
         }
 
@@ -49,6 +57,8 @@ namespace AspSwaggerRest
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(corsConfiguration);
 
             app.UseEndpoints(endpoints =>
             {
